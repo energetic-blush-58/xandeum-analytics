@@ -1,5 +1,3 @@
-import "./globals.css";
-
 export const metadata = {
   title: "Xandeum.OS Analytics",
   description: "High-performance pNode analytics engine",
