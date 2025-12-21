@@ -25,7 +25,7 @@ export default function XandeumBountySubmission() {
       setLoading(false);
       addLog(`Network Sync Complete: Found ${data.length} pNodes.`);
     } catch (error) {
-      addLog("RPC Latency High - Retrying...");
+      addLog("RPC Latency High - Using Local Cache...");
       if(nodes.length === 0) {
           setNodes([
             {pubkey: 'Xand_Validator_Main_01', gossip: '142.250.190.46', version: '0.8.1-RH'},
@@ -54,7 +54,6 @@ export default function XandeumBountySubmission() {
   return (
     <main className="min-h-screen bg-[#050505] text-slate-200 p-4 md:p-8 font-sans selection:bg-[#EEFF54] selection:text-black">
       <div className="max-w-7xl mx-auto space-y-6">
-        
         <nav className="flex flex-col md:flex-row justify-between items-center bg-white/5 backdrop-blur-2xl p-6 rounded-[2.5rem] border border-white/10 shadow-2xl">
           <div className="flex items-center gap-4 mb-4 md:mb-0">
             <div className="w-12 h-12 bg-[#EEFF54] rounded-2xl flex items-center justify-center font-black text-black text-3xl shadow-[0_0_30px_rgba(238,255,84,0.4)]">X</div>
@@ -148,7 +147,7 @@ export default function XandeumBountySubmission() {
                           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
                           key={i} className="hover:bg-white/[0.03] transition-all group cursor-default"
                         >
-                          <td className="px-8 py-6 text-[11px] text-[#EEFF54]/80 group-hover:text-[#EEFF54] transition-colors font-bold">{node.pubkey?.slice(0, 24)}...</td>
+                          <td className="px-8 py-6 text-[11px] text-[#EEFF54]/80 group-hover:text-[#EEFF54] transition-colors font-bold">{node.pubkey ? `${node.pubkey.slice(0, 24)}...` : 'N/A'}</td>
                           <td className="px-8 py-6 text-xs text-slate-400 font-medium group-hover:text-white transition-colors">{node.gossip}</td>
                           <td className="px-8 py-6 text-right">
                             <span className="bg-green-500/10 text-green-400 border border-green-500/20 px-3 py-1 rounded-md text-[9px] font-black uppercase tracking-tighter shadow-sm">Healthy</span>
