@@ -1,18 +1,21 @@
 import "./globals.css";
+import React from "react";
 
 export const metadata = {
   title: 'Xandeum Analytics',
   description: 'Real-time pNode analytics engine',
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className="bg-black text-white antialiased">{children}</body>
+      <body className="bg-black text-white antialiased">
+        {children}
+      </body>
     </html>
-  )
+  );
 }
