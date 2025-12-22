@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ backgroundColor: 'black' }}>
       <body style={{ backgroundColor: 'black', color: 'white', margin: 0 }}>
         {children}
       </body>
