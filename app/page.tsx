@@ -1,91 +1,92 @@
 import React from 'react';
 
 export default function Home() {
-  const yellowNeon = '#FFD700'; // The original Cyberpunk Yellow
-  const cyanNeon = '#00ffcc';   // Xandeum Green
+  const xandYellow = '#FFD700'; // The original Cyberpunk Yellow
+  const xandCyan = '#00ffcc';
 
   return (
-    <main style={{ minHeight: '100vh', backgroundColor: '#020202', color: '#fff', padding: '40px', fontFamily: '"JetBrains Mono", monospace' }}>
+    <main style={{ minHeight: '100vh', backgroundColor: '#050505', color: '#fff', padding: '30px', fontFamily: '"Inter", sans-serif' }}>
       <style>{`
-        @keyframes orbit {
-          from { transform: rotate(0deg) translateX(15px) rotate(0deg); }
-          to { transform: rotate(360deg) translateX(15px) rotate(-360deg); }
+        @keyframes radar-pulse {
+          0% { transform: scale(0.1); opacity: 1; }
+          100% { transform: scale(1.5); opacity: 0; }
         }
-        @keyframes pulse-glow {
-          0% { box-shadow: 0 0 5px ${yellowNeon}; }
-          50% { box-shadow: 0 0 20px ${yellowNeon}; }
-          100% { box-shadow: 0 0 5px ${yellowNeon}; }
+        .radar-ring {
+          position: absolute; border: 1px solid ${xandYellow}; border-radius: 50%;
+          animation: radar-pulse 3s infinite;
         }
-        .node-circle {
-          width: 40px; height: 40px; border-radius: 50%;
-          border: 2px solid ${yellowNeon}; position: relative;
-          display: flex; align-items: center; justify-content: center;
-          animation: pulse-glow 2s infinite;
-        }
-        .mini-node {
-          width: 6px; height: 6px; background: ${cyanNeon};
-          border-radius: 50%; position: absolute;
-          animation: orbit 4s linear infinite;
+        .glass-header {
+          background: rgba(20, 20, 20, 0.9); border-radius: 20px;
+          padding: 20px 40px; border: 1px solid rgba(255,255,255,0.05);
+          display: flex; justify-content: space-between; align-items: center;
+          margin-bottom: 30px;
         }
       `}</style>
 
-      {/* Header with Wallet Section */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '50px' }}>
-        <div>
-          <h1 style={{ fontSize: '38px', margin: 0, fontWeight: '900', letterSpacing: '-2px' }}>
-            XANDEUM<span style={{ color: cyanNeon }}>.OS</span>
-          </h1>
-          <p style={{ opacity: 0.5, color: yellowNeon, fontSize: '12px', letterSpacing: '2px' }}>MULTI-INDEX ANALYTICS ENGINE</p>
+      {/* Professional Rounded Header */}
+      <div className="glass-header">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          <div style={{ background: xandYellow, color: '#000', padding: '8px 12px', borderRadius: '8px', fontWeight: '900', fontSize: '20px' }}>X</div>
+          <div>
+            <h1 style={{ margin: 0, fontSize: '24px', fontWeight: '800', letterSpacing: '1px' }}>XANDEUM<span style={{color: xandYellow}}>.OS</span></h1>
+            <p style={{ margin: 0, fontSize: '10px', opacity: 0.5, letterSpacing: '2px' }}>MULTI-INDEX ANALYTICS ENGINE</p>
+          </div>
         </div>
-        
-        <button style={{ 
-          background: 'transparent', border: `1px solid ${yellowNeon}`, color: yellowNeon,
-          padding: '12px 24px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold',
-          transition: 'all 0.3s', boxShadow: `0 0 10px rgba(255, 215, 0, 0.2)`
-        }}>
+        <button style={{ background: 'transparent', border: `1px solid ${xandYellow}`, color: xandYellow, padding: '10px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}>
           CONNECT WALLET
         </button>
       </div>
 
-      {/* Stats Row with Yellow Accents */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginBottom: '40px' }}>
+      {/* Original 4-Column Stats */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginBottom: '30px' }}>
         {[
-          { label: 'ACTIVE pNODES', value: '3', highlight: yellowNeon },
-          { label: 'NETWORK LOAD', value: '24.2%', highlight: '#fff' },
-          { label: 'STORAGE LAYER', value: 'V0.8.1', highlight: '#fff' },
-          { label: 'CURRENT EPOCH', value: '722', highlight: yellowNeon }
+          { label: 'ACTIVE pNODES', value: '3', color: xandYellow },
+          { label: 'NETWORK LOAD', value: '24.2%', color: '#fff' },
+          { label: 'STORAGE LAYER', value: 'V0.8.1', color: '#fff' },
+          { label: 'EPOCH', value: '722', color: '#4a90e2' }
         ].map((stat, i) => (
-          <div key={i} style={{ background: 'rgba(20,20,20,0.8)', padding: '24px', borderLeft: `4px solid ${stat.highlight}`, borderRadius: '4px' }}>
-            <div style={{ fontSize: '10px', opacity: 0.4, marginBottom: '10px' }}>{stat.label}</div>
-            <div style={{ fontSize: '32px', fontWeight: 'bold', color: stat.highlight }}>{stat.value}</div>
+          <div key={i} style={{ background: '#111', padding: '20px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.03)' }}>
+            <div style={{ fontSize: '11px', opacity: 0.4, marginBottom: '10px', fontWeight: '600' }}>{stat.label}</div>
+            <div style={{ fontSize: '28px', fontWeight: 'bold', color: stat.color }}>{stat.value}</div>
           </div>
         ))}
       </div>
 
-      {/* Main Grid: Map & Index */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '30px' }}>
-        <div style={{ background: 'rgba(10,10,10,0.5)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '30px', minHeight: '400px' }}>
-          <h3 style={{ fontSize: '14px', marginBottom: '30px', opacity: 0.7 }}>TOPOLOGY VISUALIZATION</h3>
-          
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            {/* The Glowing Circular Node Animation */}
-            <div className="node-circle">
-              <div className="mini-node"></div>
-              <div style={{ color: yellowNeon, fontSize: '10px', fontWeight: 'bold' }}>MAIN</div>
-            </div>
-            {/* Connection Lines simulation */}
-            <div style={{ width: '100px', height: '1px', background: `linear-gradient(to right, ${yellowNeon}, transparent)` }}></div>
+      {/* Main Sections */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', gap: '20px' }}>
+        {/* Radar Section */}
+        <div style={{ background: '#111', padding: '25px', borderRadius: '15px', position: 'relative', overflow: 'hidden' }}>
+          <h3 style={{ fontSize: '12px', opacity: 0.6, marginBottom: '20px' }}>TOPOLOGY VISUALIZATION</h3>
+          <div style={{ height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+             <div className="radar-ring" style={{ width: '100px', height: '100px' }}></div>
+             <div className="radar-ring" style={{ width: '200px', height: '200px', animationDelay: '1s' }}></div>
+             <div style={{ width: '12px', height: '12px', background: xandYellow, borderRadius: '50%', boxShadow: `0 0 15px ${xandYellow}`, zIndex: 2 }}></div>
+             <div style={{ position: 'absolute', bottom: '20px', color: xandYellow, fontSize: '10px', fontWeight: 'bold' }}>MAIN</div>
           </div>
         </div>
 
-        <div style={{ background: 'rgba(10,10,10,0.5)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '30px' }}>
-          <h3 style={{ fontSize: '14px', marginBottom: '20px', opacity: 0.7 }}>NODE PROPAGATION INDEX</h3>
-          <input 
-            type="text" 
-            placeholder="Search Identity..." 
-            style={{ width: '100%', background: '#000', border: `1px solid ${yellowNeon}`, padding: '12px', borderRadius: '4px', color: '#fff', marginBottom: '20px' }}
-          />
-          <div style={{ fontSize: '12px', opacity: 0.4 }}>No nodes selected for trace.</div>
+        {/* Node Propagation Table */}
+        <div style={{ background: '#111', padding: '25px', borderRadius: '15px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '30px' }}>
+            <h3 style={{ fontSize: '12px', opacity: 0.6 }}>NODE PROPAGATION INDEX</h3>
+            <input placeholder="Search Identity..." style={{ background: '#000', border: '1px solid #333', padding: '8px 15px', borderRadius: '8px', color: '#fff', fontSize: '12px', width: '250px' }} />
+          </div>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
+            <thead>
+              <tr style={{ textAlign: 'left', opacity: 0.3 }}>
+                <th style={{ paddingBottom: '15px' }}>NODE IDENTITY</th>
+                <th style={{ paddingBottom: '15px' }}>GOSSIP ENDPOINT</th>
+                <th style={{ paddingBottom: '15px' }}>STATUS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style={{ borderTop: '1px solid #222' }}>
+                <td style={{ padding: '15px 0', color: xandYellow }}>Xand_Validator_Main_01...</td>
+                <td style={{ opacity: 0.7 }}>142.250.190.46</td>
+                <td><span style={{ background: 'rgba(0, 255, 204, 0.1)', color: '#00ffcc', padding: '4px 8px', borderRadius: '4px', fontSize: '10px' }}>HEALTHY</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </main>
