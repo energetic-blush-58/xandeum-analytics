@@ -38,14 +38,14 @@ export default function XandeumUnifiedCommand() {
   return (
     <div style={{ backgroundColor: '#f0f4f8', minHeight: '100vh', color: '#1e293b', padding: '25px', fontFamily: 'Inter, sans-serif' }}>
       
-      {/* BRANDING HEADER - CORRECTED */}
+      {/* BRANDING HEADER - UPDATED TO XANDEUM.OS */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', borderBottom: '1px solid #e2e8f0', paddingBottom: '20px' }}>
         <div>
           <h1 style={{ fontSize: '36px', fontWeight: '950', color: '#0f172a', margin: 0, letterSpacing: '-1px' }}>
-            XANDEUM <span style={{ color: xandEmerald, fontWeight: '400' }}>ANALYTICS</span>
+            XANDEUM<span style={{ color: xandEmerald }}>.OS</span>
           </h1>
           <p style={{ margin: 0, fontSize: '12px', color: '#64748b', fontWeight: '700' }}>
-            OFFICIAL pNODE COMMAND CENTER • <span style={{ color: xandPurple }}>DEEP SOUTH ERA (16X)</span>
+            UNIFIED COMMAND SUITE • <span style={{ color: xandPurple }}>DEEP SOUTH ERA (16X)</span>
           </p>
         </div>
         <div style={{ textAlign: 'right' }}>
