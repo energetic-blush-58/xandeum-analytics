@@ -1,94 +1,47 @@
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
 
-export default function Home() {
-  const xandYellow = '#FFD700'; // The original Cyberpunk Yellow
-  const xandCyan = '#00ffcc';
+export default function GalaxyDashboard() {
+  const xandGreen = '#10b981';
+  const xandPurple = '#a855f7';
 
   return (
-    <main style={{ minHeight: '100vh', backgroundColor: '#050505', color: '#fff', padding: '30px', fontFamily: '"Inter", sans-serif' }}>
+    <div style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '40px', overflow: 'hidden' }}>
+      
+      {/* GALAXY VISUAL (Background Layer) */}
+      <div style={{ position: 'absolute', top: '15%', right: '5%', width: '500px', height: '500px', zIndex: 0 }}>
+        {/* The Sun: xandSOL Core */}
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100px', height: '100px', background: `radial-gradient(circle, ${xandGreen} 0%, transparent 70%)`, borderRadius: '50%', boxShadow: `0 0 80px ${xandGreen}` }}></div>
+        
+        {/* Orbit 1: Rewards Star */}
+        <div className="orbit-fast" style={{ position: 'absolute', width: '300px', height: '300px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '50%', top: '100px', left: '100px', animation: 'spin 12s linear infinite' }}>
+          <div style={{ position: 'absolute', top: '-10px', left: '50%', width: '20px', height: '20px', background: xandPurple, borderRadius: '50%', boxShadow: `0 0 20px ${xandPurple}` }}></div>
+        </div>
+
+        {/* Orbit 2: Airdrop Points */}
+        <div className="orbit-slow" style={{ position: 'absolute', width: '450px', height: '450px', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '50%', top: '25px', left: '25px', animation: 'spin-reverse 25s linear infinite' }}>
+          <div style={{ position: 'absolute', bottom: '-15px', left: '50%', width: '15px', height: '15px', background: '#fff', borderRadius: '50%', boxShadow: '0 0 15px #fff' }}></div>
+        </div>
+      </div>
+
+      {/* FOREGROUND CONTENT */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <h1 style={{ fontSize: '48px', fontWeight: '900', margin: '0' }}>Xandeum <span style={{ color: xandGreen }}>Galaxy</span></h1>
+        <p style={{ color: '#94a3b8', fontSize: '20px', marginBottom: '50px' }}>Community Rewards & xandSOL Liquid Staking</p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '400px 1fr', gap: '30px' }}>
+          <div style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(20px)', padding: '30px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <p style={{ color: xandPurple, fontSize: '12px', fontWeight: '800', letterSpacing: '2px' }}>MY TOTAL POINTS</p>
+            <h2 style={{ fontSize: '56px', margin: '15px 0' }}>420,690</h2>
+            <button style={{ width: '100%', background: xandGreen, color: '#000', fontWeight: '800', padding: '15px', borderRadius: '12px', border: 'none', cursor: 'pointer' }}>Stake for 1.5x Multiplier</button>
+          </div>
+        </div>
+      </div>
+
       <style>{`
-        @keyframes radar-pulse {
-          0% { transform: scale(0.1); opacity: 1; }
-          100% { transform: scale(1.5); opacity: 0; }
-        }
-        .radar-ring {
-          position: absolute; border: 1px solid ${xandYellow}; border-radius: 50%;
-          animation: radar-pulse 3s infinite;
-        }
-        .glass-header {
-          background: rgba(20, 20, 20, 0.9); border-radius: 20px;
-          padding: 20px 40px; border: 1px solid rgba(255,255,255,0.05);
-          display: flex; justify-content: space-between; align-items: center;
-          margin-bottom: 30px;
-        }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spin-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
       `}</style>
-
-      {/* Professional Rounded Header */}
-      <div className="glass-header">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <div style={{ background: xandYellow, color: '#000', padding: '8px 12px', borderRadius: '8px', fontWeight: '900', fontSize: '20px' }}>X</div>
-          <div>
-            <h1 style={{ margin: 0, fontSize: '24px', fontWeight: '800', letterSpacing: '1px' }}>XANDEUM<span style={{color: xandYellow}}>.OS</span></h1>
-            <p style={{ margin: 0, fontSize: '10px', opacity: 0.5, letterSpacing: '2px' }}>MULTI-INDEX ANALYTICS ENGINE</p>
-          </div>
-        </div>
-        <button style={{ background: 'transparent', border: `1px solid ${xandYellow}`, color: xandYellow, padding: '10px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}>
-          CONNECT WALLET
-        </button>
-      </div>
-
-      {/* Original 4-Column Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginBottom: '30px' }}>
-        {[
-          { label: 'ACTIVE pNODES', value: '3', color: xandYellow },
-          { label: 'NETWORK LOAD', value: '24.2%', color: '#fff' },
-          { label: 'STORAGE LAYER', value: 'V0.8.1', color: '#fff' },
-          { label: 'EPOCH', value: '722', color: '#4a90e2' }
-        ].map((stat, i) => (
-          <div key={i} style={{ background: '#111', padding: '20px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.03)' }}>
-            <div style={{ fontSize: '11px', opacity: 0.4, marginBottom: '10px', fontWeight: '600' }}>{stat.label}</div>
-            <div style={{ fontSize: '28px', fontWeight: 'bold', color: stat.color }}>{stat.value}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Main Sections */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', gap: '20px' }}>
-        {/* Radar Section */}
-        <div style={{ background: '#111', padding: '25px', borderRadius: '15px', position: 'relative', overflow: 'hidden' }}>
-          <h3 style={{ fontSize: '12px', opacity: 0.6, marginBottom: '20px' }}>TOPOLOGY VISUALIZATION</h3>
-          <div style={{ height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-             <div className="radar-ring" style={{ width: '100px', height: '100px' }}></div>
-             <div className="radar-ring" style={{ width: '200px', height: '200px', animationDelay: '1s' }}></div>
-             <div style={{ width: '12px', height: '12px', background: xandYellow, borderRadius: '50%', boxShadow: `0 0 15px ${xandYellow}`, zIndex: 2 }}></div>
-             <div style={{ position: 'absolute', bottom: '20px', color: xandYellow, fontSize: '10px', fontWeight: 'bold' }}>MAIN</div>
-          </div>
-        </div>
-
-        {/* Node Propagation Table */}
-        <div style={{ background: '#111', padding: '25px', borderRadius: '15px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '30px' }}>
-            <h3 style={{ fontSize: '12px', opacity: 0.6 }}>NODE PROPAGATION INDEX</h3>
-            <input placeholder="Search Identity..." style={{ background: '#000', border: '1px solid #333', padding: '8px 15px', borderRadius: '8px', color: '#fff', fontSize: '12px', width: '250px' }} />
-          </div>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
-            <thead>
-              <tr style={{ textAlign: 'left', opacity: 0.3 }}>
-                <th style={{ paddingBottom: '15px' }}>NODE IDENTITY</th>
-                <th style={{ paddingBottom: '15px' }}>GOSSIP ENDPOINT</th>
-                <th style={{ paddingBottom: '15px' }}>STATUS</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style={{ borderTop: '1px solid #222' }}>
-                <td style={{ padding: '15px 0', color: xandYellow }}>Xand_Validator_Main_01...</td>
-                <td style={{ opacity: 0.7 }}>142.250.190.46</td>
-                <td><span style={{ background: 'rgba(0, 255, 204, 0.1)', color: '#00ffcc', padding: '4px 8px', borderRadius: '4px', fontSize: '10px' }}>HEALTHY</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </main>
+    </div>
   );
 }
