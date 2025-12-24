@@ -2,88 +2,113 @@
 
 import React, { useState } from 'react';
 
-export default function GalaxyExplorer() {
+export default function EmeraldExplorer() {
   const [searchTerm, setSearchTerm] = useState("");
-  const xandGreen = '#10b981';
-  const xandPurple = '#a855f7';
+  const xandEmerald = '#10b981'; 
+  const bgLight = '#f8fafc'; // Clean Slate White
 
-  const glassStyle = {
-    background: 'rgba(255, 255, 255, 0.03)',
-    backdropFilter: 'blur(16px)',
-    border: '1px solid rgba(255, 255, 255, 0.12)',
-    borderRadius: '24px',
-    padding: '30px',
+  const cardStyle = {
+    background: '#ffffff',
+    border: '1px solid #e2e8f0',
+    borderRadius: '20px',
+    padding: '24px',
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
   };
 
   return (
-    <div style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '40px', fontFamily: 'Inter, sans-serif', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ backgroundColor: bgLight, minHeight: '100vh', color: '#1e293b', padding: '40px', fontFamily: 'Inter, sans-serif' }}>
       
-      {/* GALAXY BACKGROUND (Discovery Layer) */}
-      <div style={{ position: 'absolute', top: '5%', right: '5%', width: '400px', height: '400px', zIndex: 0 }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '60px', height: '60px', background: xandGreen, borderRadius: '50%', boxShadow: `0 0 60px ${xandGreen}`, opacity: 0.5 }}></div>
-        <div style={{ position: 'absolute', width: '100%', height: '100%', border: '1px solid rgba(16, 185, 129, 0.1)', borderRadius: '50%', animation: 'spin 30s linear infinite' }}></div>
-      </div>
-
-      <header style={{ marginBottom: '40px', position: 'relative', zIndex: 1 }}>
-        <h1 style={{ fontSize: '38px', fontWeight: '900', margin: 0 }}>
-          Xandeum <span style={{ color: xandGreen }}>pNode Explorer</span>
-        </h1>
-        <p style={{ color: '#64748b', fontSize: '16px' }}>Gossip Network Discovery & pRPC Analytics</p>
+      {/* HEADER WITH SYSTEM STATUS */}
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', borderBottom: '1px solid #e2e8f0', paddingBottom: '20px' }}>
+        <div>
+          <h1 style={{ fontSize: '28px', fontWeight: '800', color: '#0f172a', margin: 0 }}>
+            Xandeum <span style={{ color: xandEmerald }}>Storage Explorer</span>
+          </h1>
+          <p style={{ color: '#64748b', fontSize: '14px', marginTop: '4px' }}>pRPC Gossip Discovery Engine</p>
+        </div>
+        <div style={{ display: 'flex', gap: '15px' }}>
+          <div style={{ textAlign: 'right' }}>
+            <p style={{ margin: 0, fontSize: '10px', fontWeight: '800', color: '#94a3b8' }}>NETWORK STATUS</p>
+            <p style={{ margin: 0, fontSize: '14px', color: xandEmerald, fontWeight: '700' }}>● 1,204 pNodes Live</p>
+          </div>
+        </div>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '30px', position: 'relative', zIndex: 1 }}>
+      {/* UNIQUE BOX: STORAGE ECONOMICS */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '30px' }}>
+        <div style={cardStyle}>
+          <p style={{ color: '#64748b', fontSize: '11px', fontWeight: '800' }}>TOTAL STORAGE DEPTH</p>
+          <h2 style={{ fontSize: '32px', margin: '10px 0', color: '#0f172a' }}>4.2 <span style={{fontSize: '16px', color: '#94a3b8'}}>PB</span></h2>
+          <div style={{ width: '100%', height: '4px', background: '#f1f5f9', borderRadius: '2px' }}>
+            <div style={{ width: '65%', height: '100%', background: xandEmerald }}></div>
+          </div>
+        </div>
+        <div style={cardStyle}>
+          <p style={{ color: '#64748b', fontSize: '11px', fontWeight: '800' }}>AVG STOINC YIELD</p>
+          <h2 style={{ fontSize: '32px', margin: '10px 0', color: xandEmerald }}>12.4%</h2>
+          <p style={{ fontSize: '12px', color: '#94a3b8' }}>Per Epoch / pNode</p>
+        </div>
+        <div style={cardStyle}>
+          <p style={{ color: '#64748b', fontSize: '11px', fontWeight: '800' }}>pRPC SYNC RATE</p>
+          <h2 style={{ fontSize: '32px', margin: '10px 0', color: '#0f172a' }}>14ms</h2>
+          <p style={{ fontSize: '12px', color: '#94a3b8' }}>Real-time Gossip Tracking</p>
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '30px' }}>
         
-        {/* NEW: THE LISTING (This puts it back in scope!) */}
-        <div style={glassStyle}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '700' }}>Active pNodes in Gossip</h3>
+        {/* THE pNODE DIRECTORY (Required for Scope) */}
+        <div style={cardStyle}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '25px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '700' }}>pNode Discovery Registry</h3>
             <input 
-              placeholder="Search pRPC Registry..." 
+              placeholder="Search pRPC Nodes..." 
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ background: '#0f172a', border: '1px solid #1e293b', padding: '8px 12px', borderRadius: '8px', color: 'white', fontSize: '12px' }}
+              style={{ padding: '8px 12px', borderRadius: '10px', border: '1px solid #e2e8f0', fontSize: '13px', outline: 'none', width: '250px' }}
             />
           </div>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
-              <tr style={{ color: '#475569', textAlign: 'left', borderBottom: '1px solid #1e293b' }}>
-                <th style={{ padding: '10px 0' }}>NODE ID</th>
-                <th>WIZ SCORE</th>
-                <th>VERSION</th>
+              <tr style={{ textAlign: 'left', borderBottom: '2px solid #f1f5f9', color: '#94a3b8', fontSize: '11px' }}>
+                <th style={{ paddingBottom: '15px' }}>NODE IDENTIFIER</th>
+                <th style={{ paddingBottom: '15px' }}>WIZ SCORE</th>
+                <th style={{ paddingBottom: '15px' }}>GEOLOCATION</th>
               </tr>
             </thead>
-            <tbody>
-              {['Node_Alpha', 'Node_Beta', 'Node_Gamma'].filter(n => n.toLowerCase().includes(searchTerm.toLowerCase())).map((node, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                  <td style={{ padding: '15px 0', fontWeight: '600' }}>{node}</td>
-                  <td style={{ color: xandGreen }}>98%</td>
-                  <td style={{ color: '#94a3b8' }}>v1.18.1</td>
+            <tbody style={{ fontSize: '14px' }}>
+              {[
+                { id: 'pNode_US_East_1', score: '99', geo: 'New York, US' },
+                { id: 'pNode_EU_West_2', score: '94', geo: 'London, UK' },
+                { id: 'pNode_SG_Core_1', score: '88', geo: 'Singapore, SG' }
+              ].filter(n => n.id.toLowerCase().includes(searchTerm.toLowerCase())).map((node, i) => (
+                <tr key={i} style={{ borderBottom: '1px solid #f8fafc' }}>
+                  <td style={{ padding: '18px 0', fontWeight: '600', color: '#334155' }}>{node.id}</td>
+                  <td style={{ color: xandEmerald, fontWeight: '700' }}>{node.score}/100</td>
+                  <td style={{ color: '#64748b' }}>{node.geo}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {/* ANALYTICS SIDEBAR */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          <div style={{ ...glassStyle, background: `linear-gradient(135deg, ${xandPurple}22, transparent)` }}>
-            <p style={{ fontSize: '11px', fontWeight: '800', color: xandPurple, letterSpacing: '1px' }}>NETWORK STORAGE DEPTH</p>
-            <h2 style={{ fontSize: '32px', margin: '10px 0' }}>4.2 PB</h2>
-            <p style={{ fontSize: '11px', color: '#22c55e' }}>● Gossip Discovery Active</p>
+        {/* pNODE REWARD CALCULATOR (Unique Feature) */}
+        <div style={{ ...cardStyle, background: '#1e293b', color: 'white' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '20px' }}>Reward Calculator</h3>
+          <p style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '20px' }}>Estimate your STOINC based on storage contribution.</p>
+          
+          <label style={{ fontSize: '10px', color: xandEmerald, fontWeight: '800' }}>STORAGE CONTRIBUTION (TB)</label>
+          <input type="number" defaultValue="50" style={{ width: '100%', background: '#0f172a', border: '1px solid #334155', color: 'white', padding: '12px', borderRadius: '10px', margin: '10px 0 25px 0' }} />
+          
+          <div style={{ background: 'rgba(255,255,255,0.05)', padding: '20px', borderRadius: '12px' }}>
+            <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8' }}>ESTIMATED MONTHLY EARNINGS</p>
+            <h2 style={{ margin: '10px 0 0 0', color: xandEmerald }}>485.20 XAND</h2>
           </div>
-
-          <div style={glassStyle}>
-            <p style={{ fontSize: '11px', fontWeight: '800', color: '#64748b', letterSpacing: '1px' }}>pRPC REWARD ESTIMATOR</p>
-            <div style={{ marginTop: '15px' }}>
-              <input type="number" defaultValue="1000" style={{ background: '#0f172a', border: '1px solid #1e293b', padding: '10px', borderRadius: '8px', color: 'white', width: '80%' }} />
-              <p style={{ fontSize: '12px', marginTop: '10px', color: '#94a3b8' }}>Est. Monthly STOINC: <span style={{ color: '#fff' }}>142 XAND</span></p>
-            </div>
-          </div>
+          
+          <button style={{ width: '100%', background: xandEmerald, color: '#1e293b', border: 'none', padding: '15px', borderRadius: '10px', fontWeight: '800', marginTop: '20px', cursor: 'pointer' }}>
+            Simulate pNode
+          </button>
         </div>
       </div>
-
-      <style>{`
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      `}</style>
     </div>
   );
 }
